@@ -46,7 +46,7 @@ let value='100';
 console.log(Number(value));     // This will convert the string "100" to the number 100.
 console.log(Boolean(value));    // This will convert the string "100" to the boolean value true
                              
-7
+//7
 console.log(Boolean(""));  // This will convert the empty string "" to the boolean value false
 console.log(Boolean(" ")); // This will convert the string " " (a space) to the boolean value true             
 console.log(Boolean(0));   // This will convert the number 0 to the boolean value false
@@ -199,4 +199,5 @@ else if(hour>=17 && hour<=19){
 }
 else{
     console.log('Good Night')
+
 }
