@@ -24,7 +24,7 @@ else{
 let N=prompt('enter the number:');
 (N%2==0)?console.log(`${N} is even`):console.log(`${N} is odd`);
 
-4
+//4
 console.log((10 === "10") || (5 > 2) && !(3 < 1));
 /*
 (10==='10') is  true
@@ -141,7 +141,7 @@ for(let obj in student){
 }
 
 
-// //RT 1
+//RT 1
 let Userid=prompt('enter user name:')
 let Userpw=prompt('enter user Password:')
 let Username='admin'
@@ -201,3 +201,4 @@ else{
     console.log('Good Night')
 
 }
+
