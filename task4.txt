@@ -1,0 +1,259 @@
+
+1. Payroll System:
+Create calculateSalary(basicSalary, bonusPercentage)
+- Calculate bonus
+- Deduct 5% tax
+- Return final salary
+- Print full salary breakdown 
+
+Answer:
+
+function calculateSalary(basicSalary, bonusPercentage) {
+
+
+  let bonus = (basicSalary * bonusPercentage) / 100;
+  let salaryWithBonus = basicSalary + bonus;
+  let tax = (salaryWithBonus * 5) / 100;
+  let finalSalary = salaryWithBonus - tax;
+
+  console.log("Basic Salary:", basicSalary);
+  console.log("Bonus Percentage:", bonusPercentage + "%");
+  console.log("Bonus Amount:", bonus);
+  console.log("Tax (5%):", tax);
+  console.log("Final Salary:", finalSalary);
+
+  return finalSalary;
+}
+calculateSalary(45000, 15);
+
+
+2. Student Result System:
+Create generateResult(name, marksArray)
+- Calculate total
+- Calculate average
+- Decide Grade (A/B/C/Fail)
+- Return result object
+
+Answer:
+
+function generateResult(name, marksArray) {
+
+  let total = 0;
+  for (let mark of marksArray) {
+    total += mark;
+  }
+
+  let average = total / marksArray.length;
+  let grade;
+  if (average >= 80) {grade = "A";
+  } else if (average >= 60) {
+    grade = "B";
+  } else if (average >= 40) {
+    grade = "C";
+  } else {
+    grade = "Fail";
+  }
+
+  // Result
+  let result = {
+    name: name,
+    total: total,
+    average: average,
+    grade: grade
+  };
+
+  return result;
+}
+
+let studentResult = generateResult("Nirmal", [75, 80, 70, 85, 90]);
+console.log(studentResult);
+
+3) Debug This Code:
+function demo(){
+  if(true){
+    var a = 10;
+    let b = 20;
+  }
+  console.log(a);
+  console.log(b);
+}
+ demo();
+
+Questions:
+- What will happen?
+- Why?
+- Fix it properly.
+
+Answer:
+
+/*
+What will happen?
+    it will throw ReferenceError for b
+
+Why?
+var is function scope
+let is block scope
+
+Fix properly:*/
+
+function demo() {
+  let a;
+  let b;
+  if (true) {
+    a = 10;
+    b = 20;
+  }
+  console.log(a);
+  console.log(b);
+}
+demo();
+
+4. Hoisting Analysis:
+console.log(x);
+var x = 100;
+console.log(y);
+let y = 200;
+Predict output and explain.
+
+Answer:
+
+console.log(x);
+var x = 100;    //undefined
+console.log(y)
+let y = 200;   //ReferenceError: Cannot access 'y' before initialization
+
+ Explanation:
+    var gives undefined due to hoisting, but let throws an error because of Temporal Dead Zone.
+
+    SECTION 3 – Callback & Higher Order (Industry Simulation)
+
+5. Order Processing System:
+Create processOrder(orderId, callback)
+- Print "Order Processed"
+- Call generateInvoice(orderId)
+
+Answer:
+
+function generateInvoice(orderId) {
+  console.log("Invoice generated for Order ID:", orderId);
+}
+
+function processOrder(orderId, callback) {
+  console.log("Order Processed");
+  callback(orderId);
+}
+
+// Function call
+processOrder(101, generateInvoice);
+
+
+6. Bank Transaction System:
+Create transaction(amount, type, callback)
+- If deposit → add
+- If withdraw → subtract
+- Call sendSMS()
+
+Answer:
+
+function transaction(amount, type, callback) {
+  let balance = 1000;
+
+  if (type === "deposit") balance += amount;
+  if (type === "withdraw") balance -= amount;
+
+  callback(balance);
+}
+
+function sendSMS(balance) {
+  console.log("Balance:", balance);
+}
+
+transaction(500, "deposit", sendSMS);
+
+7. Dynamic Price Builder:
+Create priceBuilder(basePrice)(discount)(tax)
+Return final price
+Example: priceBuilder(2000)(15)(18)
+
+Answer:
+
+  let discountAmount = (basePrice * discount) / 100;{
+  let priceAfterDiscount = basePrice - discountAmount;
+  let taxAmount = (priceAfterDiscount * tax) / 100;
+  let finalPrice = priceAfterDiscount + taxAmount;
+
+  return finalPrice;
+}
+
+Result:
+ priceBuilder(2000)(15)(18) = 2006
+
+8. Secure Company Module:
+- Store private variable companyCode
+- Expose getCompanyStatus()
+- companyCode should not be directly accessible
+
+Answer:
+
+const CompanyModule = (function (){
+let companyCode = "CMP123";
+
+function getCompanyStatus() {
+return "Company is Active. Code length: " + companyCode.length;
+  }
+  return {
+    getCompanyStatus: getCompanyStatus
+  };
+
+})();
+
+
+// 9. Unique Order ID Generator:
+// Generate ORD1001, ORD1002, ORD1003, etc.
+
+Answer:
+
+const orderIdGenerator = (function () {
+  let count = 1000; 
+
+  return function () {
+    count++;
+    return "ORD" + count;
+  };
+})();
+
+
+10. Coupon Spin System:
+Yield:
+- 10% OFF
+- 20% OFF
+- 50% OFF
+- No Luck
+- Jackpot
+Simulate multiple spins.
+
+Answer:
+
+function* couponSpin() {
+    const prizes = ["10% OFF", "20% OFF", "50% OFF", "No Luck", "Jackpot"];
+    for (let prize of prizes) yield prize;
+}
+
+
+/*
+1.Difference between function declaration & function expression
+     declaration is hoisted, so it can be used before it is defined.
+expression are not hoisted.
+
+2.What is higher order function?
+    A higher order function is a function that takes another function as an argument or returns a function.
+
+3.Real-time example of generator
+    Generator is used when we need values step by step instead of all at once.
+    Real-time examples are coupon spin system, pagination, and game levels.
+
+4,Why do we use IIFE?   
+    To avoid polluting the global namespace and to create private scope for variables.
+
+5.Difference between var, let, const
+    var is function scoped, while let and const are block scoped.const is preferred because it prevents reassignment.*/
